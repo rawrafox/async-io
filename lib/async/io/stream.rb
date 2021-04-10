@@ -258,12 +258,12 @@ module Async
 				flush
 				
 				if @read_buffer.empty?
-					if @io.read_nonblock(size, @read_buffer, exception: false)
+					if @io.read(size, @read_buffer)
 						# Console.logger.debug(self, name: "read") {@read_buffer.inspect}
 						return true
 					end
 				else
-					if chunk = @io.read_nonblock(size, @input_buffer, exception: false)
+					if chunk = @io.read(size, @input_buffer)
 						@read_buffer << chunk
 						# Console.logger.debug(self, name: "read") {@read_buffer.inspect}
 						
